@@ -1,0 +1,11 @@
+ajax axios fetch
+
+ajax 使用的是js xhr
+
+fetch 是es6 基于promise开发的方法
+
+axios是基于promise用于浏览器和node.js的http客户端
+
+最流行,最好用的axios 
+
+三种用法简介: https://github.com/sunwu51/notebook/blob/master/19.07/ajax_jquery%2Cfetch%2Caxios.md
