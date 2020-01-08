@@ -1,4 +1,27 @@
 1.什么是webpack
+webpack是一个模块打包工具,它可以识别所有模块引入方式,以及多种文件比如: js css less png 等
+
+webpack-cli 的作用是,使我们可以在命令行,终端,使用命令行语句来操作webpack指令
+
+模块引入方式:  
+1. es moudule --- import XXX form './XXX.js'(导出export defalut XXX)
+2. commonJS  var XXX = require('./XXX.js')  (导出 module.exports = XXX)
+3. AMD 
+//在引用时,先申明依赖
+define(['jquery'],function($){
+    var  backButton = $('.backToTop');
+	return {
+    	backButton
+	};
+});
+4. CMD
+//使用时,引入依赖
+define(function(require, exports, module) {
+	var a = require('./a') // 依赖可以就近
+	a.data()
+	var b = require('./b') 
+	b.data()
+})
 
 产生的原因: 当前端业务越来越复杂,采用传统的面象过程的开发方式,单页面内容会特别长,不方便维护,所以现在了面象对象的开发
            将页面拆分成多个对象,多个组件化的方式,单个对象由对应的单个文件进行管理
@@ -18,3 +41,28 @@ import b from 'b.js'
 (ES moudule 模块引入方式  import)
 
 浏览器不能识明 import ,可以通过webpack 的编译,让浏览器,知道,import所要做的操作(引入文件)
+
+采用es moudule的形式导入的模块(文件),必须也采用es moudule的导出形式,文件需要使用export defalut xxx进行导出
+
+
+2.loader
+webpack 不可识别的文件类型,则有loader来完成打包
+通过webpack.config.js文件来进行规则配置
+
+file-loader打包的原理 : 首先将文件,移动到dist文件下,再返回文件路径
+
+url-loader打包原理: 将图片打包成 base64的字符串 插入在js文件中;
+limit可以设置一个限制值,高与limit值,打包成图片文件,小于limit打包成字符串
+这种方案可以避免,图片过大,过多时,使js文件变得很庞大,页面加载时,耗时过长,影响用户体验
+
+style-loader 将打包后的css文件挂载到html中
+css-loader 将css相互关联的css打包成一个css
+sass-loader
+less-loader 编译less,将less编译成浏览器可识别的css
+postcss-loader 给样式加浏览器前缀 ( 需要用到autoprefixer这个插件来引入 )
+
+
+
+
+
+
